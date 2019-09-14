@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_flutter/screens/add_task_screen.dart';
 import 'package:todo_flutter/widgets/tasks_list.dart';
 import 'package:todo_flutter/widgets/tasks_tile.dart';
 
@@ -12,7 +13,7 @@ class TasksScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
-              context: context, builder: (context) => Container());
+              context: context, builder: (context) => AddTaskScreen());
         },
       ),
       body: Container(
