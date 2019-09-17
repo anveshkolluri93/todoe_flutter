@@ -13,4 +13,8 @@ class TasksProvider extends ChangeNotifier {
     tasks[index].isDone = checkBoxState;
     notifyListeners();
   }
+
+  int get taskCount {
+    return tasks.length;
+  }
 }
