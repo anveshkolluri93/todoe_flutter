@@ -1,20 +1,26 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:todo_flutter/models/task.dart';
 
 class TasksProvider extends ChangeNotifier {
-  List<Task> tasks = [];
+  List<Task> _tasks = [];
 
   void addTask(String name) {
-    tasks.add(Task(name: name));
+    _tasks.add(Task(name: name));
     notifyListeners();
   }
 
+  UnmodifiableListView<Task> get getTasks {
+    return UnmodifiableListView(_tasks);
+  }
+
   void isDone(int index, bool checkBoxState) {
-    tasks[index].isDone = checkBoxState;
+    _tasks[index].isDone = checkBoxState;
     notifyListeners();
   }
 
   int get taskCount {
-    return tasks.length;
+    return _tasks.length;
   }
 }
