@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_flutter/models/task.dart';
+import 'package:todo_flutter/providers/tasks_provider.dart';
 import 'package:todo_flutter/screens/add_task_screen.dart';
 import 'package:todo_flutter/widgets/tasks_list.dart';
 import 'package:todo_flutter/widgets/tasks_tile.dart';
@@ -10,8 +12,6 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +25,9 @@ class _TasksScreenState extends State<TasksScreen> {
             builder: (context) => AddTaskScreen((taskName) {
               setState(
                 () {
-                  tasks.add(
-                    Task(name: taskName),
-                  );
+                  Provider.of<TasksProvider>(context).tasks.add(
+                        Task(name: taskName),
+                      );
                 },
               );
             }),
@@ -64,7 +64,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    '${tasks.length} Tasks',
+                    '${Provider.of<TasksProvider>(context).tasks.length} Tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                 ],
@@ -80,7 +80,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(20.0),
                   ),
                 ),
-                child: TaskList(tasks),
+                child: TaskList(),
               ),
             )
           ],
