@@ -15,7 +15,7 @@ class TasksProvider extends ChangeNotifier {
     return UnmodifiableListView(_tasks);
   }
 
-  void isDone(int index, bool checkBoxState) {
+  void updateTask(int index, bool checkBoxState) {
     _tasks[index].isDone = checkBoxState;
     notifyListeners();
   }
