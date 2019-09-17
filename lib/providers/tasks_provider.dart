@@ -20,6 +20,11 @@ class TasksProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  GestureLongPressCallback deleteTask(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
+
   int get taskCount {
     return _tasks.length;
   }
